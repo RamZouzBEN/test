@@ -59,25 +59,24 @@
                     "mkdir c:\\buildActions",
                     "echo Azure-Image-Builder-Was-Here  > c:\\buildActions\\buildActionsOutput.txt"
                 ]
-                },
-                {
-                    "type": "WindowsUpdate",
-                    "searchCriteria": "IsInstalled=0",
-                    "filters": [
-                        "exclude:$_.Title -like '*Preview*'",
-                        "include:$true"
-                                ],
-                    "updateLimit": 20
-                },            
-                {
+            },
+            {
+                "type": "WindowsUpdate",
+                "searchCriteria": "IsInstalled=0",
+                "filters": [
+                    "exclude:$_.Title -like '*Preview*'",
+                    "include:$true"
+                ]
+            },            
+            {
                     "type": "PowerShell",
                     "name": "PackageManager",
                     "runElevated": false,
                     "inline": [
                         "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))"
                     ]
-                },
-                {
+            },
+            {
                 "type": "PowerShell",
                 "name": "AppliInstallation",
                 "runElevated": false,
